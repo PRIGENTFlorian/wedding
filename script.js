@@ -1,70 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const intro = document.getElementById("intro-screen");
-  const envelope = document.getElementById("envelope");
-  const openButton = document.getElementById("open-envelope");
-  const skipButton = document.getElementById("skip-intro");
-  const site = document.getElementById("site");
-  const tapHint = document.querySelector(".tap-hint");
 
-  let introOpened = false;
+  const envelopeSection = document.querySelector(".scroll-envelope-section");
+  const scrollEnvelope = document.getElementById("scroll-envelope");
+  const progressBar = document.querySelector(".scroll-progress");
 
-  function revealSite(immediate = false) {
-    if (!intro || !site) return;
+  function updateEnvelopeAnimation() {
+    if (!envelopeSection || !scrollEnvelope) return;
 
-    if (immediate) {
-      intro.style.transition = "none";
-      site.style.transition = "none";
-    }
+    const rect = envelopeSection.getBoundingClientRect();
+    const scrollable = Math.max(envelopeSection.offsetHeight - window.innerHeight, 1);
+    const travelled = Math.min(Math.max(-rect.top, 0), scrollable);
+    const rawProgress = travelled / scrollable;
 
-    intro.classList.add("hidden");
-    site.classList.add("visible");
-    document.body.classList.remove("locked");
+    // L'ouverture se déroule surtout au milieu de la section.
+    const progress = Math.min(Math.max((rawProgress - 0.08) / 0.78, 0), 1);
 
-    if (immediate) {
-      requestAnimationFrame(() => {
-        intro.style.transition = "";
-        site.style.transition = "";
-      });
+    scrollEnvelope.style.setProperty("--progress", progress.toFixed(4));
+    if (progressBar) {
+      progressBar.style.setProperty("--envelope-progress", progress.toFixed(4));
     }
   }
 
-  function openInvitation() {
-    if (introOpened) return;
-    introOpened = true;
-
-    if (!envelope) {
-      revealSite(true);
-      return;
-    }
-
-    intro.classList.add("opening");
-    envelope.classList.add("open");
-
-    if (tapHint) tapHint.style.opacity = "0";
-    if (skipButton) skipButton.style.opacity = "0";
-
-    window.setTimeout(() => revealSite(false), 1900);
-  }
-
-  if (openButton) {
-    openButton.addEventListener("click", openInvitation);
-    openButton.addEventListener("touchend", event => {
-      event.preventDefault();
-      openInvitation();
-    }, { passive: false });
-  }
-
-  if (skipButton) {
-    skipButton.addEventListener("click", () => revealSite(true));
-  }
-
-  // Sécurité : le site reste accessible même si l'animation échoue.
-  window.setTimeout(() => {
-    if (!introOpened && intro && !intro.classList.contains("hidden")) {
-      if (skipButton) skipButton.style.opacity = "1";
-    }
-  }, 2500);
-
+  updateEnvelopeAnimation();
+  window.addEventListener("scroll", updateEnvelopeAnimation, { passive: true });
+  window.addEventListener("resize", updateEnvelopeAnimation);
   const weddingDate = new Date("2027-05-14T15:00:00+02:00");
 
   function updateCountdown() {

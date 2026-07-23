@@ -29,3 +29,11 @@ Ne déposez pas uniquement le ZIP.
 
 ## Correctif V4.1
 L’animation de l’enveloppe a été corrigée pour ordinateur et mobile. Un bouton « Passer l’introduction » a aussi été ajouté.
+
+
+## Version 5
+
+- L’introduction plein écran a été supprimée.
+- La page d’accueil présente désormais une carte d’invitation au premier plan.
+- Une enveloppe s’ouvre progressivement lorsque l’utilisateur fait défiler la page.
+- L’animation est liée directement à la position de défilement : elle peut avancer ou reculer naturellement.
