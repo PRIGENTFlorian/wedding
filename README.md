@@ -23,3 +23,14 @@ Remplacez `#` par votre lien, par exemple :
 ## Mise en ligne
 
 Déposez `index.html`, `style.css`, `script.js` et le dossier `assets` directement à la racine du dépôt GitHub.
+
+
+## Variante palette
+
+Cette variante conserve exactement la structure et les contenus de la V3.
+Seules les couleurs ont été adaptées à la palette :
+- Burgundy Red
+- Dusty Rose
+- Baby Pink
+- Olive Green
+- Ivory
