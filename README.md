@@ -1,31 +1,25 @@
-# Site de mariage — Lucie & Florian
+# Site de mariage — version 3
 
-Cette version contient une mise en page plus élégante et plus travaillée :
-- accueil plein écran avec encadrement décoratif ;
-- typographies raffinées ;
-- sections mieux structurées ;
-- cartes de mariage haut de gamme ;
-- galerie avec légendes ;
-- formulaire RSVP modernisé ;
-- animations douces ;
-- affichage adapté aux mobiles.
+Informations intégrées :
+- Rencontre : 2024
+- Fiançailles : 2025
+- Mariage : 14 mai 2027
+- Dress code : une touche de bordeaux
+- Parking sur place
+- Mariage sans enfants
+- Réponse avant le 14 janvier 2027
+- Horaires encore à définir
 
-## Ouvrir le site
+## Ajouter le Google Form
 
-Double-cliquez sur `index.html`.
+Dans `index.html`, recherchez :
 
-## Modifier les informations
+`id="google-form-link" href="#"`
 
-- Texte et structure : `index.html`
-- Couleurs et mise en page : `style.css`
-- Compte à rebours et interactions : `script.js`
-- Photos : dossier `assets`
+Remplacez `#` par votre lien, par exemple :
 
-Pour remplacer une photo, conservez le même nom de fichier :
-- `assets/roses.jpeg`
-- `assets/fiancailles.jpeg`
+`href="https://forms.gle/xxxxxxxx"`
 
-## RSVP
+## Mise en ligne
 
-Le formulaire est toujours en mode démonstration.
-Il n'envoie encore aucune donnée.
+Déposez `index.html`, `style.css`, `script.js` et le dossier `assets` directement à la racine du dépôt GitHub.
