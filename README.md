@@ -25,3 +25,7 @@ Déposez directement à la racine du dépôt :
 - le dossier `assets`
 
 Ne déposez pas uniquement le ZIP.
+
+
+## Correctif V4.1
+L’animation de l’enveloppe a été corrigée pour ordinateur et mobile. Un bouton « Passer l’introduction » a aussi été ajouté.

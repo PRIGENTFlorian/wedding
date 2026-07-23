@@ -163,3 +163,87 @@ dialog{width:min(900px,92vw);padding:0;border:0;background:transparent}dialog::b
   .envelope{width:88vw;height:210px}.invite-card p{font-size:1.75rem}
   .wax-seal{width:62px;height:62px}
 }
+
+
+/* Correctif animation enveloppe */
+.envelope-button{
+  display:block;
+  width:min(420px,82vw);
+  margin:0 auto;
+  padding:0;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+.envelope-button:focus-visible{
+  outline:2px solid var(--burgundy);
+  outline-offset:10px;
+  border-radius:4px;
+}
+.envelope{
+  width:100%;
+  height:280px;
+}
+.envelope-back{z-index:1}
+.invite-card{
+  z-index:3;
+  will-change:transform;
+}
+.envelope-front{
+  z-index:5;
+  pointer-events:none;
+}
+.envelope-flap{
+  z-index:7;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  will-change:transform;
+  pointer-events:none;
+}
+.wax-seal{
+  z-index:8;
+  pointer-events:none;
+}
+.envelope.open .envelope-flap{
+  transform:rotateX(180deg);
+  z-index:2;
+}
+.envelope.open .invite-card{
+  z-index:6;
+  transform:translateY(-165px);
+}
+.envelope.open .envelope-front{
+  z-index:4;
+}
+.skip-intro{
+  margin-top:16px;
+  padding:8px 12px;
+  border:0;
+  color:var(--burgundy);
+  background:transparent;
+  font-size:.63rem;
+  letter-spacing:.12em;
+  text-decoration:underline;
+  text-underline-offset:4px;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+.intro-screen.opening .intro-wrap{
+  animation:introLift 1.9s ease forwards;
+}
+@keyframes introLift{
+  0%,65%{transform:translateY(0)}
+  100%{transform:translateY(-18px)}
+}
+@media(max-width:780px){
+  .envelope-button{width:min(390px,88vw)}
+  .envelope{height:240px}
+  .envelope.open .invite-card{transform:translateY(-135px)}
+}
+@media(max-width:560px){
+  .envelope-button{width:88vw}
+  .envelope{height:210px}
+  .envelope.open .invite-card{transform:translateY(-118px)}
+}
