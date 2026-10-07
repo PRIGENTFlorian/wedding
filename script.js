@@ -1,6 +1,36 @@
-const weddingDate=new Date("2027-05-14T15:00:00+02:00");
-function tick(){const d=weddingDate-new Date();if(d<=0)return;const vals=[Math.floor(d/86400000),Math.floor(d%86400000/3600000),Math.floor(d%3600000/60000),Math.floor(d%60000/1000)];["days","hours","minutes","seconds"].forEach((id,i)=>document.getElementById(id).textContent=String(vals[i]).padStart(i?2:3,"0"))}tick();setInterval(tick,1000);
-const obs=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("visible")),{threshold:.12});document.querySelectorAll(".reveal").forEach(e=>obs.observe(e));
-const menu=document.querySelector(".menu"),links=document.querySelector(".links");menu.onclick=()=>links.classList.toggle("open");links.querySelectorAll("a").forEach(a=>a.onclick=()=>links.classList.remove("open"));
-const box=document.getElementById("lightbox"),pic=box.querySelector("img");document.querySelectorAll(".gallery-item").forEach(b=>b.onclick=()=>{pic.src=b.dataset.image;box.showModal()});box.querySelector("button").onclick=()=>box.close();box.onclick=e=>e.target===box&&box.close();
-document.getElementById("google-form-link").onclick=e=>{if(e.currentTarget.getAttribute("href")==="#"){e.preventDefault();alert("Ajoutez le lien de votre Google Form dans index.html.")}};
+# Site de mariage — version 3
+
+Informations intégrées :
+- Rencontre : 2024
+- Fiançailles : 2025
+- Mariage : 14 mai 2027
+- Dress code : une touche de bordeaux
+- Parking sur place
+- Mariage sans enfants
+- Réponse avant le 14 janvier 2027
+- Horaires encore à définir
+
+## Ajouter le Google Form
+
+Dans `index.html`, recherchez :
+
+`id="google-form-link" href="#"`
+
+Remplacez `#` par votre lien, par exemple :
+
+`href="https://forms.gle/xxxxxxxx"`
+
+## Mise en ligne
+
+Déposez `index.html`, `style.css`, `script.js` et le dossier `assets` directement à la racine du dépôt GitHub.
+
+
+## Variante palette
+
+Cette variante conserve exactement la structure et les contenus de la V3.
+Seules les couleurs ont été adaptées à la palette :
+- Burgundy Red
+- Dusty Rose
+- Baby Pink
+- Olive Green
+- Ivory
