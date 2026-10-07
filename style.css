@@ -58,3 +58,37 @@
 .rsvp-card {
   border-color: rgba(155, 155, 103, .42);
 }
+
+/* Programme — timeline verticale inspirée du faire-part de référence */
+#programme{max-width:920px}
+#programme .title{margin-bottom:42px}
+.program-timeline{position:relative;max-width:760px;margin:0 auto;padding:18px 0 8px}
+.program-timeline::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:linear-gradient(180deg,transparent,var(--burgundy) 5%,var(--burgundy) 95%,transparent);transform:translateX(-50%)}
+.program-step{position:relative;display:grid;grid-template-columns:1fr 58px 1fr;min-height:210px;align-items:center}
+.program-step .program-copy{position:relative;max-width:285px;padding:20px 24px}
+.program-step.left .program-copy{grid-column:1;text-align:right;justify-self:end}
+.program-step.right .program-copy{grid-column:3;text-align:left;justify-self:start}
+.program-step.right .program-marker{grid-column:2;grid-row:1}
+.program-step.right .program-symbol{grid-column:1;grid-row:1;justify-self:end}
+.program-step.left .program-symbol{grid-column:3;grid-row:1;justify-self:start}
+.program-copy::after{content:"";position:absolute;top:58px;width:46px;height:1px;background:rgba(61,41,45,.45)}
+.program-step.left .program-copy::after{right:-20px}
+.program-step.right .program-copy::after{left:-20px}
+.program-time{display:block;color:var(--ink);font:500 clamp(1.7rem,3vw,2.25rem)/1 "Cormorant Garamond",serif;letter-spacing:.02em}
+.program-copy h3{margin:10px 0 6px;color:var(--burgundy);font:500 clamp(1.75rem,3vw,2.25rem)/.95 "Cormorant Garamond",serif;text-transform:uppercase}
+.program-copy p{margin:0;color:var(--muted);font-size:.72rem;line-height:1.55;letter-spacing:.08em;text-transform:uppercase}
+.program-marker{grid-column:2;grid-row:1;z-index:2;display:grid;width:30px;height:30px;margin:auto;place-items:center;border:2px solid #9a7a35;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px var(--cream),0 2px 8px rgba(61,41,45,.18)}
+.program-marker span{color:#fff;font-size:.72rem;line-height:1}
+.program-symbol{font:400 2.5rem/1 "Cormorant Garamond",serif;color:var(--burgundy);opacity:.9;padding:0 30px}
+@media(max-width:640px){
+  #programme{width:min(100% - 28px,920px)}
+  #programme .title{margin-bottom:28px}
+  .program-timeline{padding-left:8px}
+  .program-timeline::before{left:24px}
+  .program-step{grid-template-columns:48px 1fr;min-height:190px;align-items:center}
+  .program-step.left .program-copy,.program-step.right .program-copy{grid-column:2;grid-row:1;text-align:left;justify-self:start;max-width:none;padding:22px 10px 22px 22px}
+  .program-step .program-marker,.program-step.right .program-marker{grid-column:1;grid-row:1}
+  .program-step .program-symbol,.program-step.left .program-symbol,.program-step.right .program-symbol{display:none}
+  .program-copy::after,.program-step.left .program-copy::after,.program-step.right .program-copy::after{left:-5px;right:auto;width:22px;top:58px}
+  .program-copy h3{font-size:1.8rem}
+}
