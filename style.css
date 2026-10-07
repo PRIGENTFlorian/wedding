@@ -69,8 +69,8 @@
 .program-step.left .program-copy{grid-column:1;text-align:right;justify-self:end}
 .program-step.right .program-copy{grid-column:3;text-align:left;justify-self:start}
 .program-step.right .program-marker{grid-column:2;grid-row:1}
-.program-step.right .program-symbol{grid-column:1;grid-row:1;justify-self:end}
-.program-step.left .program-symbol{grid-column:3;grid-row:1;justify-self:start}
+.program-step.right .program-visual{grid-column:1;grid-row:1;justify-self:end}
+.program-step.left .program-visual{grid-column:3;grid-row:1;justify-self:start}
 .program-copy::after{content:"";position:absolute;top:58px;width:46px;height:1px;background:rgba(61,41,45,.45)}
 .program-step.left .program-copy::after{right:-20px}
 .program-step.right .program-copy::after{left:-20px}
@@ -79,16 +79,113 @@
 .program-copy p{margin:0;color:var(--muted);font-size:.72rem;line-height:1.55;letter-spacing:.08em;text-transform:uppercase}
 .program-marker{grid-column:2;grid-row:1;z-index:2;display:grid;width:30px;height:30px;margin:auto;place-items:center;border:2px solid #9a7a35;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px var(--cream),0 2px 8px rgba(61,41,45,.18)}
 .program-marker span{color:#fff;font-size:.72rem;line-height:1}
-.program-symbol{font:400 2.5rem/1 "Cormorant Garamond",serif;color:var(--burgundy);opacity:.9;padding:0 30px}
+.program-visual{margin:0;padding:0 18px;width:min(230px,100%);display:flex;align-items:center;justify-content:center}
+.program-visual img{display:block;width:100%;height:190px;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(61,41,45,.08))}
+.program-marker span{width:8px;height:8px;border-radius:50%;background:#fff8e8;display:block}
 @media(max-width:640px){
   #programme{width:min(100% - 28px,920px)}
   #programme .title{margin-bottom:28px}
   .program-timeline{padding-left:8px}
   .program-timeline::before{left:24px}
-  .program-step{grid-template-columns:48px 1fr;min-height:190px;align-items:center}
+  .program-step{grid-template-columns:48px 1fr;grid-template-rows:auto auto;min-height:240px;align-items:center}
   .program-step.left .program-copy,.program-step.right .program-copy{grid-column:2;grid-row:1;text-align:left;justify-self:start;max-width:none;padding:22px 10px 22px 22px}
   .program-step .program-marker,.program-step.right .program-marker{grid-column:1;grid-row:1}
-  .program-step .program-symbol,.program-step.left .program-symbol,.program-step.right .program-symbol{display:none}
+  .program-step .program-visual,.program-step.left .program-visual,.program-step.right .program-visual{grid-column:2;grid-row:2;justify-self:start;width:135px;padding:0 0 8px 22px;display:flex}
+  .program-visual img{height:115px}
   .program-copy::after,.program-step.left .program-copy::after,.program-step.right .program-copy::after{left:-5px;right:auto;width:22px;top:58px}
   .program-copy h3{font-size:1.8rem}
+}
+
+/* Correctif mobile : véritable alternance autour de l'axe central.
+   Les classes left/right sont générées automatiquement dans script.js. */
+@media (max-width: 640px) {
+  html, body { max-width: 100%; overflow-x: clip; }
+  #programme { width: min(100% - 24px, 920px); }
+  .program-timeline {
+    width: 100%;
+    max-width: 440px;
+    padding: 12px 0;
+    margin-inline: auto;
+  }
+  .program-timeline::before { left: 50%; transform: translateX(-50%); }
+  .program-step {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) 34px minmax(0,1fr);
+    grid-template-rows: auto;
+    min-height: 195px;
+    gap: 0;
+    align-items: center;
+  }
+  .program-step.left .program-copy,
+  .program-step.right .program-copy {
+    grid-row: 1;
+    width: 100%;
+    min-width: 0;
+    padding: 10px 5px;
+    max-width: none;
+  }
+  .program-step.left .program-copy {
+    grid-column: 1;
+    text-align: right;
+    justify-self: end;
+  }
+  .program-step.right .program-copy {
+    grid-column: 3;
+    text-align: left;
+    justify-self: start;
+  }
+  .program-step .program-marker,
+  .program-step.right .program-marker {
+    grid-column: 2;
+    grid-row: 1;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+  }
+  .program-step.left .program-visual,
+  .program-step.right .program-visual {
+    grid-row: 1;
+    width: 100%;
+    min-width: 0;
+    padding: 4px;
+    margin: 0;
+    justify-self: center;
+  }
+  .program-step.left .program-visual { grid-column: 3; }
+  .program-step.right .program-visual { grid-column: 1; }
+  .program-visual img {
+    width: 100%;
+    height: clamp(95px, 32vw, 160px);
+    object-fit: contain;
+  }
+  .program-copy::after,
+  .program-step.left .program-copy::after,
+  .program-step.right .program-copy::after {
+    top: 48px;
+    width: 14px;
+  }
+  .program-step.left .program-copy::after { left: auto; right: -14px; }
+  .program-step.right .program-copy::after { left: -14px; right: auto; }
+  .program-time { font-size: clamp(1rem, 3.9vw, 1.35rem); line-height: 1.1; }
+  .program-copy h3 {
+    font-size: clamp(1.2rem, 5vw, 1.7rem);
+    line-height: 1.05;
+    overflow-wrap: break-word;
+  }
+  .program-copy p {
+    font-size: clamp(.57rem, 2.2vw, .68rem);
+    line-height: 1.45;
+    letter-spacing: .01em;
+  }
+  .section { width: min(100% - 28px, 1160px); }
+  .hero-content { padding-inline: 12px; }
+}
+@media (max-width: 360px) {
+  .program-step { grid-template-columns: minmax(0,1fr) 26px minmax(0,1fr); min-height: 165px; }
+  .program-step .program-marker { width: 16px; height: 16px; }
+  .program-copy p { font-size: .57rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
 }
