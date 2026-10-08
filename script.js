@@ -54,7 +54,9 @@ const practicalInfos = [
   { id: "lieu", title: "Le lieu", description: "Château Arribas — Condé-Sainte-Libiaire", image: "assets/infos/lieu.png", alt: "Illustration du lieu de réception", action: { label: "Voir l’itinéraire", url: "https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau+Arribas+Cond%C3%A9-Sainte-Libiaire" } },
   { id: "parking", title: "Parking", description: "Un parking sera disponible directement sur place.", image: "assets/infos/parking.png", alt: "Illustration du parking" },
   { id: "dress-code", title: "Dress code", description: "Nous vous invitons à porter une touche de bordeaux.", image: "assets/infos/dress-code.png", alt: "Illustration du dress code" },
-  { id: "adultes", title: "Adultes uniquement", description: "Nous avons choisi de célébrer cette journée sans enfants.", image: "assets/infos/adultes.png", alt: "Illustration adultes uniquement" }
+  { id: "adultes", title: "Adultes uniquement", description: "Nous avons choisi de célébrer cette journée sans enfants.", image: "assets/infos/adultes.png", alt: "Illustration adultes uniquement" },
+  { id: "hebergement", title: "Hébergement", description: "Des options d'hébergement seront disponibles à proximité.", image: "assets/infos/hebergement.png", alt: "Illustration de l'hébergement" },
+  { id: "contact", title: "Contact", description: "Pour plus d'informations, n'hésitez pas à nous contacter.", image: "assets/infos/contact.png", alt: "Illustration du contact" }
 ];
 
 function renderPracticalInfos(items = practicalInfos) {
