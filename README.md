@@ -1,4 +1,4 @@
-# Site de mariage - v1
+# Site de mariage
 
 Informations intégrées :
 - Rencontre : 2024
