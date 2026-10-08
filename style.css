@@ -189,3 +189,16 @@
   .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
 }
+
+/* Informations pratiques : mobile first, cartes alimentées par practicalInfos */
+#practical-info-cards{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;max-width:1060px;margin-inline:auto}
+#practical-info-cards .practical-card{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:24px 20px 28px;border:1px solid #B99B6255;border-radius:14px;background:#fffaf5;text-align:center;box-shadow:0 8px 24px #4c14260c}
+.practical-card__media{height:clamp(110px,32vw,160px);width:min(100%,230px);display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.practical-card__media img{display:block;width:100%;height:100%;object-fit:contain}
+.practical-card__fallback{display:grid;place-items:center;width:74px;height:74px;border:1px solid var(--gold);border-radius:50%;font:2.4rem 'Cormorant Garamond',serif;color:var(--b)}
+#practical-info-cards .practical-card h3{margin:0 0 8px;font-size:clamp(1.8rem,6vw,2.25rem);line-height:1.15}
+#practical-info-cards .practical-card p{margin:0;max-width:35ch;font-size:.9rem;line-height:1.65;color:var(--muted);overflow-wrap:anywhere}
+#practical-info-cards .practical-card a{display:inline-flex;align-items:center;justify-content:center;min-height:46px;margin-top:18px;padding:9px 18px;border:1px solid var(--b);border-radius:6px;text-decoration:none;font-size:.75rem;letter-spacing:.06em}
+#practical-info-cards .practical-card a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@media(min-width:680px){#practical-info-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}#practical-info-cards .practical-card{padding:30px 24px}}
+@media(min-width:1050px){#practical-info-cards{grid-template-columns:repeat(4,minmax(0,1fr))}}

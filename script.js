@@ -42,3 +42,64 @@ function renderProgram(events = programEvents) {
   timeline.querySelectorAll(".reveal").forEach(el => obs.observe(el));
 }
 renderProgram();
+
+
+/* INFORMATIONS PRATIQUES — modifier uniquement ce tableau.
+ * image: placer un PNG/WebP dans assets/infos/ et écrire son chemin ici.
+ * Sans image, une icône de remplacement est affichée.
+ * Pour ajouter une carte, dupliquer une ligne et changer id, title, description, image.
+ * action: facultatif, { label: "...", url: "https://..." }.
+ */
+const practicalInfos = [
+  { id: "lieu", title: "Le lieu", description: "Château Arribas — Condé-Sainte-Libiaire", image: "assets/infos/lieu.png", alt: "Illustration du lieu de réception", action: { label: "Voir l’itinéraire", url: "https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau+Arribas+Cond%C3%A9-Sainte-Libiaire" } },
+  { id: "parking", title: "Parking", description: "Un parking sera disponible directement sur place.", image: "assets/infos/parking.png", alt: "Illustration du parking" },
+  { id: "dress-code", title: "Dress code", description: "Nous vous invitons à porter une touche de bordeaux.", image: "assets/infos/dress-code.png", alt: "Illustration du dress code" },
+  { id: "adultes", title: "Adultes uniquement", description: "Nous avons choisi de célébrer cette journée sans enfants.", image: "assets/infos/adultes.png", alt: "Illustration adultes uniquement" }
+];
+
+function renderPracticalInfos(items = practicalInfos) {
+  const target = document.getElementById("practical-info-cards");
+  if (!target) return;
+  target.replaceChildren();
+  for (const item of items) {
+    const card = document.createElement("article");
+    card.className = "info practical-card reveal";
+    card.dataset.info = item.id;
+    const media = document.createElement("div");
+    media.className = "practical-card__media";
+    if (item.image) {
+      const img = document.createElement("img");
+      img.src = item.image;
+      img.alt = item.alt || "";
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.addEventListener("error", () => { media.replaceChildren(); addIcon(); });
+      media.append(img);
+    } else addIcon();
+    function addIcon() {
+      const icon = document.createElement("span");
+      icon.className = "practical-card__fallback";
+      icon.setAttribute("aria-hidden", "true");
+      icon.textContent = item.icon || "✦";
+      media.append(icon);
+    }
+    const heading = document.createElement("h3");
+    heading.textContent = item.title;
+    const description = document.createElement("p");
+    description.textContent = item.description;
+    card.append(media, heading, description);
+    if (item.action?.url && /^(https?:\/\/|mailto:|tel:)/i.test(item.action.url)) {
+      const link = document.createElement("a");
+      link.href = item.action.url;
+      link.textContent = item.action.label || "En savoir plus";
+      if (/^https?:\/\//i.test(item.action.url)) {
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      }
+      card.append(link);
+    }
+    target.append(card);
+    if (typeof obs !== "undefined") obs.observe(card);
+  }
+}
+renderPracticalInfos();
