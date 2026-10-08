@@ -202,3 +202,8 @@
 #practical-info-cards .practical-card a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 @media(min-width:680px){#practical-info-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}#practical-info-cards .practical-card{padding:30px 24px}}
 @media(min-width:1050px){#practical-info-cards{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* Séparateurs décoratifs responsives */
+.section-separator { width:100%; display:flex; justify-content:center; align-items:center; padding: 6px 18px; box-sizing:border-box; overflow:hidden; }
+.section-separator img { display:block; width:min(100%, 470px); height:auto; object-fit:contain; }
+@media (max-width: 600px) { .section-separator { padding: 0 20px; } .section-separator img { width:min(100%, 310px); } }
