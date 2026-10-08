@@ -1,4 +1,4 @@
-# Site de mariage — version 3
+# Site de mariage
 
 Informations intégrées :
 - Rencontre : 2024
